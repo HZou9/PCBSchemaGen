@@ -1,0 +1,10 @@
+(footprint "R_0805_2012Metric_cleaned"
+  (layer "F.Cu")
+  (attr smd)
+  (pad "1" smd rect (at -0.9125 0) (size 1.025 1.4) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "2" smd rect (at 0.9125 0) (size 1.025 1.4) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (fp_line (start -1.68 -0.95) (end 1.68 -0.95) (layer "F.CrtYd") (width 0.05))
+  (fp_line (start -1.68 0.95) (end -1.68 -0.95) (layer "F.CrtYd") (width 0.05))
+  (fp_line (start 1.68 -0.95) (end 1.68 0.95) (layer "F.CrtYd") (width 0.05))
+  (fp_line (start 1.68 0.95) (end -1.68 0.95) (layer "F.CrtYd") (width 0.05))
+)

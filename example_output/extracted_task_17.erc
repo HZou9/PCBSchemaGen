@@ -1,0 +1,10 @@
+ERC WARNING: Only one pin (PASSIVE pin 2/IN+ of UCC5390E/IC3) attached to net PWM_L.
+ERC WARNING: Only one pin (PASSIVE pin 2/IN+ of UCC5390E/IC1) attached to net PWM_H.
+ERC INFO: 2 warnings found while running ERC.
+ERC INFO: 0 errors found while running ERC.
+
+ERC WARNING: Only one pin (PASSIVE pin 2/IN+ of UCC5390E/IC3) attached to net PWM_L.
+ERC WARNING: Only one pin (PASSIVE pin 2/IN+ of UCC5390E/IC1) attached to net PWM_H.
+ERC INFO: 2 warnings found while running ERC.
+ERC INFO: 0 errors found while running ERC.
+

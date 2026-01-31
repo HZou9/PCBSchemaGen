@@ -1,0 +1,527 @@
+{
+  "pin_roles_vocab": {
+    "supply_vdd": {},
+    "supply_gnd": {},
+    "primary_vdd": {},
+    "primary_gnd": {},
+    "secondary_vdd": {},
+    "secondary_gnd": {},
+    "sense_plus": {},
+    "sense_minus": {},
+    "out": {},
+    "out_plus": {},
+    "out_minus": {},
+    "logic_in": {},
+    "logic_out": {},
+    "passive_terminal": {
+      "symmetric": true
+    },
+    "diode_anode": {},
+    "diode_cathode": {},
+    "buck_vin": {},
+    "buck_gnd": {},
+    "buck_sw": {},
+    "buck_fb": {},
+    "buck_en": {},
+    "buck_boot": {},
+    "halfbridge_hb": {},
+    "halfbridge_hs": {},
+    "gate_ho": {},
+    "gate_lo": {},
+    "mosfet_gate": {},
+    "mosfet_drain": {},
+    "mosfet_source": {},
+    "mosfet_kelvin_source": {},
+    "xfmr_primary": {},
+    "xfmr_secondary": {}
+  },
+  "components": {
+    "R": {
+      "category": "passive",
+      "footprint": "R_0805",
+      "note": "Generic SMD resistor",
+      "pin_roles": {
+        "~": "passive_terminal"
+      },
+      "generic_constraints": []
+    },
+    "C": {
+      "category": "passive",
+      "footprint": "C_0805",
+      "note": "Generic SMD capacitor",
+      "pin_roles": {
+        "~": "passive_terminal"
+      },
+      "generic_constraints": []
+    },
+    "L": {
+      "category": "passive",
+      "footprint": "L_0805",
+      "note": "Generic SMD inductor",
+      "pin_roles": {
+        "1": "passive_terminal",
+        "2": "passive_terminal"
+      },
+      "generic_constraints": []
+    },
+    "D": {
+      "category": "passive",
+      "footprint": "BAT165",
+      "note": "Generic Schottky diode",
+      "pin_roles": {
+        "K": "diode_anode",
+        "A": "diode_cathode"
+      },
+      "generic_constraints": []
+    },
+    "AMC1350": {
+      "category": "ic",
+      "footprint": "AMC1350",
+      "note": "Isolated amplifier",
+      "pin_roles": {
+        "VDD1": "primary_vdd",
+        "GND1": "primary_gnd",
+        "VDD2": "secondary_vdd",
+        "GND2": "secondary_gnd",
+        "INP": "sense_plus",
+        "INN": "sense_minus",
+        "OUTP": "out_plus",
+        "OUTN": "out_minus"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VDD1",
+          "gnd_pin": "GND1"
+        },
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VDD2",
+          "gnd_pin": "GND2"
+        },
+        {
+          "type": "must_be_connected",
+          "pins": [
+            "INP",
+            "INN"
+          ]
+        }
+      ]
+    },
+    "OPA328": {
+      "category": "ic",
+      "footprint": "OPA328",
+      "note": "Precision op amp",
+      "pin_roles": {
+        "V+": "supply_vdd",
+        "V-": "supply_gnd",
+        "+IN": "sense_plus",
+        "-IN": "sense_minus",
+        "OUT": "out"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "V+",
+          "gnd_pin": "V-"
+        },
+        {
+          "type": "differential_pair_must_be_distinct",
+          "pins": [
+            "+IN",
+            "-IN"
+          ]
+        },
+        {
+          "type": "must_be_connected",
+          "pins": [
+            "+IN",
+            "-IN",
+            "OUT"
+          ]
+        }
+      ]
+    },
+    "ACS37010": {
+      "category": "ic",
+      "footprint": "ACS37010",
+      "note": "Hall-based current sensor",
+      "pin_roles": {
+        "VDD": "supply_vdd",
+        "GND": "supply_gnd",
+        "IP+": "passive_terminal",
+        "IP-": "passive_terminal",
+        "VREF": "sense_plus",
+        "VOUT": "out"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VDD",
+          "gnd_pin": "GND"
+        },
+        {
+          "type": "must_be_connected",
+          "pins": [
+            "VOUT"
+          ]
+        }
+      ]
+    },
+    "TLV1117-33": {
+      "category": "ic",
+      "footprint": "TLV1117-33",
+      "note": "3.3 V LDO regulator",
+      "pin_roles": {
+        "INPUT": "supply_vdd",
+        "ADJ/GND": "supply_gnd",
+        "OUTPUT_1": "out",
+        "OUTPUT_2": "out"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "INPUT",
+          "gnd_pin": "ADJ/GND"
+        },
+        {
+          "type": "must_be_connected",
+          "pins": [
+            "OUTPUT_1",
+            "OUTPUT_2"
+          ]
+        }
+      ]
+    },
+    "TPS54302": {
+      "category": "ic",
+      "footprint": "TPS54302",
+      "note": "Buck regulator. EN floating defaults to enabled; if controlling EN, use a resistor divider so EN >1.30V at valid input. If EN is floating, connect to NC.",
+      "pin_roles": {
+        "VIN": "buck_vin",
+        "GND": "buck_gnd",
+        "SW": "buck_sw",
+        "FB": "buck_fb",
+        "EN": "buck_en",
+        "BOOT": "buck_boot"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VIN",
+          "gnd_pin": "GND"
+        },
+        {
+          "type": "must_be_connected",
+          "pins": [
+            "SW",
+            "FB"
+          ]
+        }
+      ]
+    },
+    "MGJ2D121505SC": {
+      "category": "ic",
+      "footprint": "MGJ2D121505SC",
+      "note": "Isolated DC/DC. this isolated dc/dc converter is for isolated gate driver secondary side power supply only, do not use it for other isolated power supply applications.",
+      "pin_roles": {
+        "+VIN": "primary_vdd",
+        "-VIN": "primary_gnd",
+        "+VOUT": "secondary_vdd",
+        "0V": "secondary_gnd",
+        "-VOUT": "secondary_gnd"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "+VIN",
+          "gnd_pin": "-VIN"
+        }
+      ],
+      "isolation_boundary": true,
+      "primary_pins": [1, 2],
+      "secondary_pins": [5, 6, 7]
+    },
+    "UCC27511": {
+      "category": "ic",
+      "footprint": "UCC27511",
+      "note": "Low-side non-isolated gate driver",
+      "pin_roles": {
+        "VDD": "supply_vdd",
+        "GND": "supply_gnd",
+        "OUTH": "out_plus",
+        "OUTL": "out_minus",
+        "IN+": "logic_in",
+        "IN-": "logic_in"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VDD",
+          "gnd_pin": "GND"
+        },
+        {
+          "type": "must_be_connected",
+          "pins": [
+            "OUTH",
+            "OUTL"
+          ]
+        }
+      ]
+    },
+    "UCC27211": {
+      "category": "ic",
+      "footprint": "UCC27211",
+      "note": "Bootstrap half-bridge gate driver, Maximum VIN DC bus rating is 120V. Do NOT use this gate driver if VIN > 100V. The bootstrap diode is already integrated in the UCC27211, do not add an additional bootstrap diode.",
+      "pin_roles": {
+        "VDD": "supply_vdd",
+        "VSS": "supply_gnd",
+        "HB": "halfbridge_hb",
+        "HS": "halfbridge_hs",
+        "HO": "gate_ho",
+        "LO": "gate_lo",
+        "HI": "logic_in",
+        "LI": "logic_in"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VDD",
+          "gnd_pin": "VSS"
+        }
+      ]
+    },
+    "UCC5390E": {
+      "category": "ic",
+      "footprint": "UCC5390E",
+      "note": "Isolated single channel gate driver",
+      "pin_roles": {
+        "VCC1": "primary_vdd",
+        "GND1": "primary_gnd",
+        "VCC2": "secondary_vdd",
+        "GND2": "secondary_gnd",
+        "IN+": "logic_in",
+        "IN-": "logic_in",
+        "OUT": "out",
+        "VEE2": "secondary_gnd"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VCC1",
+          "gnd_pin": "GND1"
+        },
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VCC2",
+          "gnd_pin": "GND2"
+        }
+      ],
+      "isolation_boundary": true,
+      "primary_pins": [1, 2, 3, 4],
+      "secondary_pins": [5, 6, 7, 8]
+    },
+    "UCC21710": {
+      "category": "ic",
+      "footprint": "UCC21710",
+      "note": "Isolated gate driver with oc protection and miller clamp",
+      "pin_roles": {
+        "VCC": "supply_vdd",
+        "GND": "supply_gnd",
+        "IN+": "logic_in",
+        "IN-": "logic_in",
+        "APWM": "logic_in",
+        "OUTH": "out_plus",
+        "OUTL": "out_minus",
+        "RDY": "logic_out",
+        "~{FLT}": "logic_out",
+        "~{RST}/EN": "logic_in",
+        "AIN": "sense_plus",
+        "OC": "sense_minus",
+        "CLMPI": "sense_minus",
+        "COM": "supply_gnd",
+        "VDD": "supply_vdd",
+        "VEE": "supply_gnd"
+      },
+      "generic_constraints": [
+        {
+          "type": "supply_pair",
+          "vdd_pin": "VCC",
+          "gnd_pin": "GND"
+        },
+        {
+          "type": "must_be_connected",
+          "pins": [
+            "OUTH",
+            "OUTL"
+          ]
+        }
+      ],
+      "notes": {
+        "CLMPI": "connect this pin to gate for clamping",
+        "CLAMP": "connect this pin to gate for clamping"
+      },
+      "isolation_boundary": true,
+      "primary_pins": [9, 10, 11, 12, 13, 14, 15, 16],
+      "secondary_pins": [1, 2, 3, 4, 5, 6, 7, 8]
+    },
+    "BSC052N08NS5": {
+      "category": "MOSFET",
+      "footprint": "BSC052N08NS5",
+      "note": "TDSON-8 80V 5.2mohm Si MOSFET, Do NOT use this MOSFET if VBUS > 60V",
+      "spec_vds_max": 80,
+      "spec_rds_on": 0.0052,
+      "pin_roles": {
+        "1": "mosfet_source",
+        "2": "mosfet_source",
+        "3": "mosfet_source",
+        "4": "mosfet_gate",
+        "5": "mosfet_drain",
+        "6": "mosfet_drain",
+        "7": "mosfet_drain",
+        "8": "mosfet_drain",
+        "9": "mosfet_drain"
+      },
+      "generic_constraints": [
+        {
+          "type": "driving_pair",
+          "gate_pin": "4",
+          "source_pin": "1"
+        }
+      ]
+    },
+    "IMLT65R015M2H": {
+      "category": "MOSFET",
+      "footprint": "IMLT65R015M2H",
+      "note": "TOLT 650V 15mohm SiC MOSFET, Do NOT use this MOSFET if VBUS > 450V",
+      "spec_vds_max": 650,
+      "spec_rds_on": 0.015,
+      "pin_roles": {
+        "1": "mosfet_source",
+        "2": "mosfet_source",
+        "3": "mosfet_source",
+        "4": "mosfet_source",
+        "5": "mosfet_source",
+        "6": "mosfet_source",
+        "7": "mosfet_kelvin_source",
+        "8": "mosfet_gate",
+        "9": "mosfet_drain",
+        "10": "mosfet_drain",
+        "11": "mosfet_drain",
+        "12": "mosfet_drain",
+        "13": "mosfet_drain",
+        "14": "mosfet_drain",
+        "15": "mosfet_drain",
+        "16": "mosfet_drain"
+      },
+      "generic_constraints": [
+        {
+          "type": "driving_pair",
+          "gate_pin": "8",
+          "source_pin": "7"
+        }
+      ]
+    },
+    "IMT65R033M2H": {
+      "category": "MOSFET",
+      "footprint": "IMT65R033M2H",
+      "note": "TOLL 650V 33mohm SiC MOSFET, Do NOT use this MOSFET if VBUS > 450V",
+      "spec_vds_max": 650,
+      "spec_rds_on": 0.033,
+      "pin_roles": {
+        "1": "mosfet_gate",
+        "2": "mosfet_kelvin_source",
+        "3": "mosfet_source",
+        "4": "mosfet_source",
+        "5": "mosfet_source",
+        "6": "mosfet_source",
+        "7": "mosfet_source",
+        "8": "mosfet_source",
+        "9": "mosfet_source",
+        "10": "mosfet_drain",
+        "11": "mosfet_drain",
+        "12": "mosfet_drain"
+      },
+      "generic_constraints": [
+        {
+          "type": "driving_pair",
+          "gate_pin": "1",
+          "source_pin": "2"
+        }
+      ]
+    },
+    "IMW65R015M2H": {
+      "category": "MOSFET",
+      "footprint": "IMW65R015M2H",
+      "note": "TO-247-3 650V 15mohm SiC MOSFET, Do NOT use this MOSFET if VBUS > 450V",
+      "spec_vds_max": 650,
+      "spec_rds_on": 0.015,
+      "pin_roles": {
+        "1": "mosfet_gate",
+        "2": "mosfet_drain",
+        "3": "mosfet_source"
+      },
+      "generic_constraints": [
+        {
+          "type": "driving_pair",
+          "gate_pin": "1",
+          "source_pin": "3"
+        }
+      ]
+    },
+    "IMZA65R015M2H": {
+      "category": "MOSFET",
+      "footprint": "IMZA65R015M2H",
+      "note": "TO-247-4 650V 15mohm SiC MOSFET, Do NOT use this MOSFET if VBUS > 450V",
+      "spec_vds_max": 650,
+      "spec_rds_on": 0.015,
+      "pin_roles": {
+        "1": "mosfet_drain",
+        "2": "mosfet_source",
+        "3": "mosfet_kelvin_source",
+        "4": "mosfet_gate"
+      },
+      "generic_constraints": [
+        {
+          "type": "driving_pair",
+          "gate_pin": "4",
+          "source_pin": "3"
+        }
+      ]
+    },
+    "C_film": {
+      "category": "passive",
+      "footprint": "C_film",
+      "note": "Film capacitor for resonant applications (LLC, DAB)",
+      "pin_roles": {
+        "~": "passive_terminal"
+      },
+      "generic_constraints": []
+    },
+    "Inductor_power": {
+      "category": "inductor",
+      "footprint": "Inductor_power",
+      "note": "Power inductor. Pins 1-6 = Terminal A, pins 7-12 = Terminal B.",
+      "pin_roles": {
+        "A": "passive_terminal",
+        "B": "passive_terminal"
+      },
+      "generic_constraints": []
+    },
+    "transformer_PQ5050": {
+      "category": "transformer",
+      "footprint": "transformer_PQ5050",
+      "note": "PQ50/50 transformer. Pri_1(1-3), Pri_2(4-6), Sec_1(7-9), Sec_2(10-12).",
+      "pin_roles": {
+        "Pri_1": "xfmr_primary",
+        "Pri_2": "xfmr_primary",
+        "Sec_1": "xfmr_secondary",
+        "Sec_2": "xfmr_secondary"
+      },
+      "generic_constraints": [],
+      "isolation_boundary": true,
+      "primary_pins": [1, 2, 3, 4, 5, 6],
+      "secondary_pins": [7, 8, 9, 10, 11, 12]
+    }
+  }
+}

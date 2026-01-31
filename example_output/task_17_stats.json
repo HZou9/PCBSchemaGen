@@ -1,0 +1,20 @@
+{
+    "task_id": 17,
+    "model": "google/gemini-3-flash-preview",
+    "timestamp": "2026-01-28T17:16:14",
+    "total_duration_seconds": 17.31,
+    "attempts": 1,
+    "total_prompt_tokens": 6597,
+    "total_completion_tokens": 2131,
+    "estimated_cost_usd": 0.009692,
+    "status": "PASS",
+    "failure_reason": "",
+    "t_llm_request": 13.6928,
+    "t_parse_extract": 0.0001,
+    "t_syntax_check": 0.0009,
+    "t_erc_runtime": 0.5536,
+    "t_topology_verify": 0.5681,
+    "t_svg_generate": 1.2003,
+    "t_artifacts_generate": 1.2926,
+    "t_write_outputs": 0.0004
+}
