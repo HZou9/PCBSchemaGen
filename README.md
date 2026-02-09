@@ -117,3 +117,18 @@ XDG_DATA_HOME=$(pwd)/.. python3 run_feedback_trials.py \
 ```
 
 Results are saved to `task/feedback_runs/`.
+
+# Citation
+
+If you find this work helpful, please cite our paper:
+
+```bibtex
+@misc{zou2026pcbschemagen,
+      title={PCBSchemaGen: Constraint-Guided Schematic Design via LLM for Printed Circuit Boards (PCB)}, 
+      author={Huanghaohe Zou and Peng Han and Emad Nazerian and Alex Q. Huang},
+      year={2026},
+      eprint={2602.00510},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={[https://arxiv.org/abs/2602.00510](https://arxiv.org/abs/2602.00510)}, 
+}
