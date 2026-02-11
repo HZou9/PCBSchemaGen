@@ -11,6 +11,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 
+os.environ.setdefault("PYTHONBREAKPOINT", "0")
 
 STAGE_KEYS = [
     "t_llm_request",
@@ -407,6 +408,7 @@ def _run_single_trial(args, feedback, task_id, trial, run_root, base_dir, templa
             cwd=task_dir,
             text=True,
             capture_output=True,
+            stdin=subprocess.DEVNULL,
         )
     except FileNotFoundError:
         _append_summary(

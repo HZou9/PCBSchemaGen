@@ -8,6 +8,8 @@ import glob
 import re
 import time
 
+os.environ.setdefault("PYTHONBREAKPOINT", "0")
+
 # ==========================================
 # Configuration & Setup Section (Injectable)
 # ==========================================
@@ -245,7 +247,8 @@ if generation_failed:
             cmd,
             capture_output=True,
             text=True,
-            env=env
+            env=env,
+            stdin=subprocess.DEVNULL,
         )
         
         # Give OS filesystem a moment to sync file handles

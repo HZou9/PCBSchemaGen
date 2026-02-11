@@ -15,6 +15,7 @@ import tempfile
 
 sys.dont_write_bytecode = True
 os.environ.setdefault("PYTHONDONTWRITEBYTECODE", "1")
+os.environ.setdefault("PYTHONBREAKPOINT", "0")
 
 from topo import (
     build_topology,
@@ -406,6 +407,7 @@ print("TOPOLOGY_JSON_END")
             text=True,
             env=env,
             cwd=temp_dir,
+            stdin=subprocess.DEVNULL,
         )
 
         full_output = result.stdout + "\n" + result.stderr
@@ -531,6 +533,7 @@ except Exception as e:
             text=True,
             env=env,
             cwd=temp_dir,
+            stdin=subprocess.DEVNULL,
         )
 
         expected_svg_path = os.path.join(temp_dir, expected_default_svg)
@@ -606,6 +609,7 @@ except Exception as e:
             text=True,
             env=env,
             cwd=temp_dir,
+            stdin=subprocess.DEVNULL,
         )
 
     full_output = result.stdout + "\n" + result.stderr
@@ -823,6 +827,7 @@ if errors:
             text=True,
             env=env,
             cwd=temp_dir,
+            stdin=subprocess.DEVNULL,
         )
 
         def move_file(pattern, dest, source_dir):
